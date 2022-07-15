@@ -1,6 +1,6 @@
 import GoodsItem from "./GoodsItem";
 
-const GoodsList = ({ goodsList = [] }) => {
+const GoodsList = ({ goodsList = [], handleClickBuy }) => {
   if (!goodsList.length) {
     return <h3>Nothing here</h3>
   }
@@ -8,7 +8,7 @@ const GoodsList = ({ goodsList = [] }) => {
   return (
     <div className="goods">
       {goodsList.map((item) => (
-        <GoodsItem key={item.id} goodsItem={item} />
+        <GoodsItem key={item.mainId} goodsItem={item} handleClickBuy={handleClickBuy} />
       ))}
     </div>
   );

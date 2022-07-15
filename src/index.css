@@ -24,6 +24,26 @@ nav {
   gap: 1rem;
 }
 
+.cart {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  cursor: pointer;
+  z-index: 5;
+  padding: 1rem;
+}
+
+@media (min-width: 767px) {
+  .cart {
+    bottom: unset;
+    top: 6rem;
+  }
+}
+
+.cart-quantity{
+
+}
+
 .card {
   display: flex;
   flex-direction: column;
