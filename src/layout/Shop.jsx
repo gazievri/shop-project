@@ -3,11 +3,20 @@ import { getGoods } from "../utils/api.js";
 import Preloader from "../components/Preloader.jsx";
 import GoodsList from "../components/GoodsList.jsx";
 import Cart from "../components/Cart";
+import BasketList from "../components/BasketList.jsx";
+import Alert from "../components/Alert";
 
 const Shop = () => {
   const [goods, setGoods] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [order, setOrder] = useState([]);
+  const [isBasketOpen, setIsBasketOpen] = useState(false);
+  const [alertName, setAlertName] = useState("");
+
+
+  const handleClickBasketOpen = () => {
+    setIsBasketOpen(!isBasketOpen);
+  };
 
   const handleClickBuy = (goodsItem) => {
     const indexItem = order.findIndex(
@@ -33,17 +42,54 @@ const Shop = () => {
       });
       setOrder(newOrder);
     }
+    setAlertName(goodsItem.displayName);
   };
 
-  console.log(order);
+  const removeFromBasket = (itemId) => {
+    const newOrder = order.filter((el) => el.mainId !== itemId);
+    setOrder(newOrder);
+  };
 
-  //Сохраняем order в Local Storage каждый раз при обновление order
-  useEffect(() => {
-    //localStorage.setItem("order", JSON.stringify(order));
-    console.log(order);
-  }, [order]);
+  const addItemQuantity = (goodsItem) => {
+    const newOrder = order.map((item) => {
+      if (item.mainId === goodsItem.mainId) {
+        return {
+          ...item,
+          quantity: goodsItem.quantity + 1,
+        };
+      }
+    });
+    setOrder(newOrder);
+  };
 
-  localStorage.clear()
+  const deleteItemQuantity = (goodsItem) => {
+    const newOrder = order.map((item) => {
+      if (item.mainId === goodsItem.mainId) {
+        if (item.quantity > 1) {
+          return {
+            ...item,
+            quantity: goodsItem.quantity - 1,
+          };
+        } else {
+          return {
+            ...item,
+            quantity: 1,
+          };
+        }
+      }
+    });
+    setOrder(newOrder);
+  };
+
+  const closeAlert = () => {
+    setAlertName("");
+  };
+
+  const sendOrder = () => {
+    setOrder([]);
+    setIsBasketOpen(false);
+    alert('Thank you for your order!');
+  }
 
   useEffect(() => {
     getGoods()
@@ -56,12 +102,26 @@ const Shop = () => {
 
   return (
     <main className="container content">
-      <Cart quantity={order.length} />
+      <Cart
+        quantity={order.length}
+        handleClickBasketOpen={handleClickBasketOpen}
+      />
       {isLoading ? (
         <Preloader />
       ) : (
         <GoodsList goodsList={goods} handleClickBuy={handleClickBuy} />
       )}
+      {isBasketOpen && (
+        <BasketList
+          order={order}
+          handleClickBasketOpen={handleClickBasketOpen}
+          removeFromBasket={removeFromBasket}
+          addItemQuantity={addItemQuantity}
+          deleteItemQuantity={deleteItemQuantity}
+          sendOrder={sendOrder}
+        />
+      )}
+      {alertName && <Alert name={alertName} closeAlert={closeAlert} />}
     </main>
   );
 };

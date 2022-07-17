@@ -52,3 +52,74 @@ nav {
 .card-content {
   flex-grow: 1;
 }
+
+.basket-list {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 50rem;
+  max-width: 95%;
+  animation: show 500ms ease-in-out;
+
+}
+
+.basket-close {
+  cursor: pointer;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  color: #fff;
+}
+
+.basket-delete {
+  cursor: pointer;
+}
+
+.basket-delete:hover {
+  opacity: 50%;
+}
+
+.basket-quantity {
+  cursor: pointer;
+  vertical-align: middle;
+  color: #26a69a;
+}
+
+.basket-quantity:hover {
+  opacity: 50%;
+}
+
+li {
+  list-style: none;
+}
+
+@keyframes show {
+  from {
+    top: 70%;
+    opacity: 0;
+  }
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
+#toast-container {
+  top: 3rem !important;
+  animation: fade-in 250ms ease-in-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+
