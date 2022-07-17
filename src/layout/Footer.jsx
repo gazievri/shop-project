@@ -4,7 +4,10 @@ function Footer() {
       <div className="footer-copyright">
         <div className="container">
           {`© ${new Date().getFullYear()}. Ruslan Gaziev`}
-          <a className="grey-text text-lighten-4 right" href="https://github.com/gazievri/shop-project">
+          <a
+            className="grey-text text-lighten-4 right"
+            href="https://github.com/gazievri/shop-project"
+          >
             Repo
           </a>
         </div>

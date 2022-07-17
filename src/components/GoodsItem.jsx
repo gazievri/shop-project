@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
 const GoodsItem = ({ goodsItem, handleClickBuy }) => {
-  const { displayName, granted, price } =
-    goodsItem;
+  const { displayName, granted, price } = goodsItem;
 
   const addItem = () => {
     handleClickBuy(goodsItem);
-  }
+  };
 
   return (
     <div className="card">
@@ -18,14 +17,16 @@ const GoodsItem = ({ goodsItem, handleClickBuy }) => {
         <p>{granted[0].description}</p>
       </div>
       <div className="card-action">
-        <button className="btn" onClick={addItem} >Add</button>
-        <span className="right" style={{ fontSize: '1.8rem' }}>{`$${price.regularPrice}`}</span>
+        <button className="btn" onClick={addItem}>
+          Add
+        </button>
+        <span
+          className="right"
+          style={{ fontSize: "1.8rem" }}
+        >{`$${price.regularPrice}`}</span>
       </div>
     </div>
   );
 };
 
 export default GoodsItem;
-
-
-

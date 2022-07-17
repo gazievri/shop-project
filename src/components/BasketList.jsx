@@ -1,18 +1,16 @@
 import BasketItem from "./BasketItem";
 
 const BasketList = ({
-  order = [],
+  order,
   handleClickBasketOpen = Function.prototype,
   removeFromBasket = Function.prototype,
   addItemQuantity = Function.prototype,
   deleteItemQuantity = Function.prototype,
-  sendOrder = Function.prototype
+  sendOrder = Function.prototype,
 }) => {
   const totalPrice = order.reduce((sum, el) => {
     return sum + el.price.regularPrice * el.quantity;
   }, 0);
-
-
 
   return (
     <div className="collection basket-list">

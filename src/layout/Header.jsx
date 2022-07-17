@@ -3,7 +3,7 @@ function Header() {
     <nav className="light-blue darken-4">
       <div className="nav-wrapper">
         <a href="#" className="brand-logo">
-           My Shop
+          My Shop
         </a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li>

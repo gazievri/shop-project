@@ -9,10 +9,9 @@ import Alert from "../components/Alert";
 const Shop = () => {
   const [goods, setGoods] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [order, setOrder] = useState([]);
+  const [order, setOrder] = useState(JSON.parse(localStorage.getItem("order")));
   const [isBasketOpen, setIsBasketOpen] = useState(false);
   const [alertName, setAlertName] = useState("");
-
 
   const handleClickBasketOpen = () => {
     setIsBasketOpen(!isBasketOpen);
@@ -57,6 +56,8 @@ const Shop = () => {
           ...item,
           quantity: goodsItem.quantity + 1,
         };
+      } else {
+        return item;
       }
     });
     setOrder(newOrder);
@@ -64,18 +65,14 @@ const Shop = () => {
 
   const deleteItemQuantity = (goodsItem) => {
     const newOrder = order.map((item) => {
+      const quantity = goodsItem.quantity;
       if (item.mainId === goodsItem.mainId) {
-        if (item.quantity > 1) {
-          return {
-            ...item,
-            quantity: goodsItem.quantity - 1,
-          };
-        } else {
-          return {
-            ...item,
-            quantity: 1,
-          };
-        }
+        return {
+          ...item,
+          quantity: quantity > 0 ? quantity - 1 : 0,
+        };
+      } else {
+        return item;
       }
     });
     setOrder(newOrder);
@@ -88,8 +85,13 @@ const Shop = () => {
   const sendOrder = () => {
     setOrder([]);
     setIsBasketOpen(false);
-    alert('Thank you for your order!');
-  }
+    localStorage.clear();
+    alert("Thank you for your order!");
+  };
+
+  useEffect(() => {
+    order && localStorage.setItem("order", JSON.stringify(order));
+  }, [order]);
 
   useEffect(() => {
     getGoods()
