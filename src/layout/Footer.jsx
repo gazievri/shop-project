@@ -7,6 +7,8 @@ function Footer() {
           <a
             className="grey-text text-lighten-4 right"
             href="https://github.com/gazievri/shop-project"
+            target="_blank"
+            rel="noreferrer"
           >
             Repo
           </a>
