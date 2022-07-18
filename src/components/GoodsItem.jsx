@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const GoodsItem = ({ goodsItem, handleClickBuy }) => {
   const { displayName, granted, price } = goodsItem;
