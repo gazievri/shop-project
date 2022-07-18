@@ -17,6 +17,7 @@ const Shop = () => {
         data.shop && setGoods(data.shop);
       })
       .catch((err) => console.log(err));
+      //eslint-disable-next-line
   }, []);
 
   return (
