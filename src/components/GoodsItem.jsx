@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { ShopContext } from "../context/context";
 
-const GoodsItem = ({ goodsItem, handleClickBuy }) => {
+const GoodsItem = ({ goodsItem }) => {
   const { displayName, granted, price } = goodsItem;
 
-  const addItem = () => {
-    handleClickBuy(goodsItem);
-  };
+  const { addToBasket } = useContext(ShopContext);
 
   return (
     <div className="card">
@@ -17,7 +16,7 @@ const GoodsItem = ({ goodsItem, handleClickBuy }) => {
         <p>{granted[0].description}</p>
       </div>
       <div className="card-action">
-        <button className="btn" onClick={addItem}>
+        <button className="btn" onClick={() => addToBasket(goodsItem)}>
           Add
         </button>
         <span
