@@ -1,19 +1,20 @@
-const BasketItem = ({
-  item,
-  removeFromBasket = Function.prototype,
-  addItemQuantity = Function.prototype,
-  deleteItemQuantity = Function.prototype,
-}) => {
+import { useContext } from "react";
+import { ShopContext } from "../context/context";
+
+const BasketItem = ({ item }) => {
+  const { removeFromBasket, incrementQuantity, decrementQuantity } =
+    useContext(ShopContext);
+
   const handeClickRemove = () => {
     removeFromBasket(item.mainId);
   };
 
   const handleClickAdd = () => {
-    addItemQuantity(item);
+    incrementQuantity(item);
   };
 
   const handleClickRemove = () => {
-    deleteItemQuantity(item);
+    decrementQuantity(item);
   };
 
   return (

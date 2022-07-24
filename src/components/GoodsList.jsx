@@ -1,18 +1,18 @@
 import GoodsItem from "./GoodsItem";
+import { useContext } from "react";
+import { ShopContext } from "../context/context";
 
-const GoodsList = ({ goodsList = [], handleClickBuy }) => {
-  if (!goodsList.length) {
+const GoodsList = () => {
+  const { goods = [] } = useContext(ShopContext);
+
+  if (!goods.length) {
     return <h3>Nothing here</h3>;
   }
 
   return (
     <div className="goods">
-      {goodsList.map((item) => (
-        <GoodsItem
-          key={item.mainId}
-          goodsItem={item}
-          handleClickBuy={handleClickBuy}
-        />
+      {goods.map((item) => (
+        <GoodsItem key={item.mainId} goodsItem={item} />
       ))}
     </div>
   );
