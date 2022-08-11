@@ -1,6 +1,6 @@
 # YOUR BEST SHOP
 
-Проект доступен по [ссылке](https://github.com/gazievri/shop-project/)) .
+Проект доступен по [ссылке](https://github.com/gazievri/shop-project/).
 
 ## Описание проекта
 
